@@ -1,4 +1,4 @@
-# Twitch chat lingo and slang extractor
+# Tw0rds! Develop Insight! With Twitch Slangs and Lingos!
 
 ## Table of Contents
 1. [Scrapper](README.md#scrapper)
