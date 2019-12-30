@@ -7,7 +7,7 @@
 #  Output file:  messages, videos, users, 
 #  Notes:
 #
-#  How to run: spark-submit <options> extract_field.py <extract_date;%Y-%m-%d> ; run using airflow
+#  How to run: spark-submit <options> extract_field.py <extract_date;%Y-%m-%d> 
 ##################################################################################
 
 

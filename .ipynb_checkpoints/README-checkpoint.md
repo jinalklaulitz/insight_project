@@ -46,7 +46,7 @@ and simply delete matching words found in sentences. This is implemented in Spar
 To deal with words that have the same meaning but different spelling, such as Lol, lol, LOLLLL, LOLz and etc. I performed Jaccardian Similarity. This is implemented through Spark's mllib library as MinhashLSH. To improve on similarity, Levenshtein distance was added as a second point of similarity measure. This is implemented as a Spark UDF with the python library Fuzzy Wuzzy, where i make use of the partial ratio.
 
 ### Term Frequency - Inverse Document Frequency(TF-IDF) 
-To remove usernames embedded in the list of extracted slangs and lingos, TF-IDF is used as slangs tend frequently show across the chat corpus. This implemented manually as opposed to using Spark's built-in functionality since "document" level that TF-IDF works with is at per conversation level. 
+To remove usernames embedded in the list of extracted slangs and lingos, TF-IDF is used as slangs tend frequently show across the chat corpus.
 
 ## Infrastructure
 Tw0rds is build on an infrastructure pipeline as follows:
