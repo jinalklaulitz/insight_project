@@ -21,7 +21,7 @@ extract_date = sys.argv[1]
 json_path = os.environ['json_path'] + '/twitch_batch_{}'.format(extract_date)
 
 #get current list of files
-onlyfiles = [f for f in listdir(json_path) if isfile(join(json_path, f))]
+FileList = [f for f in listdir(json_path) if isfile(join(json_path, f))]
 
 #initialize producer
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'])

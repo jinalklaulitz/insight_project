@@ -6,22 +6,6 @@
 ##################################################################################
 */
 
-/*game level*/
-select game,count(slangs) as count_wurds from test_games_level group by game order by count_wurds desc;
-
-select game,count(distinct slangs) as count_wurds from test_games_level group by game order by count_wurds desc;
-
-/*channel level*/
-select channel_id,count(slangs) as count_wurds from test_games_level group by channel_id order by count_wurds desc;
-
-select b.channel_id,b.username, sum(a.count_wurds) as cnt_wurds
-from (select vid_id,count(distinct slangs) as count_wurds from test_games_level group by vid_id order by count_wurds desc) as a left JOIN
-dist_channels as b 
-on a.vid_id=b.vid_id
-group by b.channel_id,b.username
-order by cnt_wurds desc
-;
-
 create table dist_slangs as 
 select distinct slangs 
 from spectrum.messages
