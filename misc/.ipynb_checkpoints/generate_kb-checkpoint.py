@@ -15,7 +15,10 @@ import pandas as pd
 #parameters
 raw_urban_dict = os.environ['raw_urban_dict']
 urban_dict = os.environ['urban_dict']
+eng_file = os.environ['english_file']
 
+#load english list
+eng_list = pd.read_csv(english_file,error_bad_lines=False,low_memory=False,warn_bad_lines=False,header=None)[0].tolist()
 #load raw file
 urban_list = pd.read_csv(raw_urban_dict,error_bad_lines=False,low_memory=False,warn_bad_lines=False)
 #subset and removing words with missing votes

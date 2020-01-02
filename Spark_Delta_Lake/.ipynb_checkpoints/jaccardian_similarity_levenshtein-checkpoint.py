@@ -28,7 +28,7 @@ import os
 #declare parameters
 spark = SparkSession.builder.appName('Jacc_Lev').getOrCreate()
 sc = spark.sparkContext
-path_messages = os.environ['extracted_slangs']
+path_messages = os.environ['messages']
 path_slangs_lookup = os.environ['slangs_lookup']
 
 #load messages delta lake table

@@ -52,7 +52,7 @@ def clean_text(text):
 def nltk_tolkenizer(x):
     from nltk.tokenize import TweetTokenizer
     tknzr = TweetTokenizer()
-    return tknzr.tokenize(x)
+    return return [x for x in tknzr.tokenize(x) if x.isalpha() and len(x)>1]
 
 #define udfs
 def add_eng():
