@@ -45,6 +45,12 @@ for i in session:
 #    bash_command='bash + srcDir + 'jsonec2s3.sh' ,
 #    dag=dag)
 # downloadData.set_downstream(move2bucket)
+
+#generate today's userlist
+downloadData= BashOperator(
+    task_id='generate-todays-userlist',
+    bash_command='python ' + srcDir + '/generate_todays_userlist.py',
+    dag=dag)
  
 #retrieve video metadata
 for i in session:
