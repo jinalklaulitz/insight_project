@@ -38,6 +38,9 @@ with open(input_file_list, newline='', encoding='utf-8') as input_file:
 
 #tcd --channel <channel> --format json --timezone America/New_York
 
+#tcd = twitch chat downloader 
+#https://github.com/PetterKraabol/Twitch-Chat-Downloader
+
 def tcd_bash(channel):
     try:
         bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output /home/ubuntu/twitchjson/{}".format(client,channel,extract_date)
