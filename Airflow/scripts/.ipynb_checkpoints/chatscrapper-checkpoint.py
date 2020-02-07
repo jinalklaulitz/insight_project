@@ -23,6 +23,7 @@ session=sys.argv[1]
 extract_date = sys.argv[2]
 input_file_list = os.environ['twitch_user_list{}'.format(extract_date)]
 client = os.environ['TWITCH_CLIENT{}'.format(session)]
+srcDir = os.environ['default_twitch']
 
 userlist = list()
 
@@ -43,12 +44,12 @@ with open(input_file_list, newline='', encoding='utf-8') as input_file:
 
 def tcd_bash(channel):
     try:
-        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output /home/ubuntu/twitchjson/{}".format(client,channel,extract_date)
+        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output {}/twitch_batch_{}".format(client,channel,srcDir,extract_date)
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
     except:
         time.sleep(1200)
-        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output /home/ubuntu/twitchjson/{}".format(client,channel,extract_date)
+        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output {}/twitch_batch_{}".format(client,channel,srcDir,extract_date)
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
 

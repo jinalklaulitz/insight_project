@@ -7,7 +7,7 @@
 #  Input files: json files
 #  Output file: <n/a> - sends files to spark
 #  Notes:
-#  How to run: python producer.py <extract_date;%Y-%m-%d>  (ran using airflow's bash operator)
+#  How to run: python producer.py <extract_date;%Y-%m-%d>
 ##################################################################################
 
 #declare libraries

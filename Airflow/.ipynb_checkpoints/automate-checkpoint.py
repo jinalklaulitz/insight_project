@@ -34,6 +34,12 @@ user ='ubuntu'
 srcDir = os.environ['default_twitch']
 session= range(1,10)
 
+#generate today's userlist
+downloadData= BashOperator(
+    task_id='generate-todays-userlist',
+    bash_command='python ' + srcDir + '/generate_todays_userlist.py',
+    dag=dag)
+
 #invoke twitch API
 for i in session:
     downloadData= BashOperator(
@@ -41,12 +47,13 @@ for i in session:
         bash_command='ssh ubuntu@{} python ' + srcDir + '/chatscrapper.py {} {}'.format(iplist[i],i,extract_date),
         dag=dag)
 
-#generate today's userlist
-downloadData= BashOperator(
-    task_id='generate-todays-userlist',
-    bash_command='python ' + srcDir + '/generate_todays_userlist.py',
-    dag=dag)
- 
+#invoke kafka producer
+for i in session:
+    downloadData= BashOperator(
+        task_id='kafkaproducer',
+        bash_command='ssh ubuntu@{} python ' + srcDir + '/producer.py {}'.format(iplist[i],extract_date),
+        dag=dag)
+    
 #retrieve video metadata
 for i in session:
     downloadData= BashOperator(
