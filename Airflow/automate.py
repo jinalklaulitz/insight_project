@@ -15,6 +15,8 @@ import datetime as dt
 import os
 
 #define parameters
+iplist = os.getenv('EC2_IPLIST').split(',')
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -36,15 +38,8 @@ session= range(1,10)
 for i in session:
     downloadData= BashOperator(
         task_id='get-new-twitch',
-        bash_command='python ' + srcDir + '/chatscrapper.py {} {}'.format(i,extract_date),
+        bash_command='ssh ubuntu@{} python ' + srcDir + '/chatscrapper.py {} {}'.format(iplist[i],i,extract_date),
         dag=dag)
-
-#move to s3 - depreciated function
-#move2bucket= BashOperator(
-#    task_id='ec2Tos3',
-#    bash_command='bash + srcDir + 'jsonec2s3.sh' ,
-#    dag=dag)
-# downloadData.set_downstream(move2bucket)
 
 #generate today's userlist
 downloadData= BashOperator(
@@ -56,6 +51,6 @@ downloadData= BashOperator(
 for i in session:
     downloadData= BashOperator(
         task_id='retrieve-vid-metadata',
-        bash_command='python ' + srcDir + '/retrieve_vid_meta.py {}'.format(i),
+        bash_command='ssh ubuntu@{} python ' + srcDir + '/retrieve_vid_meta.py {}'.format(iplist[i],i),
         dag=dag)
     
