@@ -36,7 +36,7 @@ session= range(1,10)
 for i in session:
     downloadData= BashOperator(
         task_id='get-new-twitch',
-        bash_command='python ' + srcDir + '/{} {} chatscrapper.py'.format(i,extract_date),
+        bash_command='python ' + srcDir + '/chatscrapper.py {} {}'.format(i,extract_date),
         dag=dag)
 
 #move to s3 - depreciated function
@@ -50,6 +50,6 @@ for i in session:
 for i in session:
     downloadData= BashOperator(
         task_id='retrieve-vid-metadata',
-        bash_command='python ' + srcDir + '/{} retrieve_vid_meta.py'.format(i),
+        bash_command='python ' + srcDir + '/retrieve_vid_meta.py {}'.format(i),
         dag=dag)
     
