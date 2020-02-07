@@ -7,7 +7,7 @@
 #  Input files: userlist
 #  Output file: json files
 #  Notes:
-#  How to run: python <session> <extract_date> chatscrapper.py (ran using airflow's bash operator)
+#  How to run: python chatscrapper.py <session> <extract_date>  (ran using airflow's bash operator)
 ##################################################################################
 
 #import libraries
@@ -45,10 +45,10 @@ def tcd_bash(channel):
         output, error = process.communicate()
     except:
         time.sleep(1200)
-        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output /home/ubuntu/twitchjson/{}".format(client,channel/extract_date)
+        bashCommand = "tcd --client-id {} --channel {} --format json --timezone America/New_York --output /home/ubuntu/twitchjson/{}".format(client,channel,extract_date)
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
 
-#perform parallel processing - 9 because 9 ec2 instances excluding master node
-p = Pool(9)
+#perform parallel processing 
+p = Pool(2)
 p.map(tcd_bash,userlist)

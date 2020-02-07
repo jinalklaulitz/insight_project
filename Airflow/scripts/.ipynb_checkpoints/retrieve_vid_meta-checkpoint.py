@@ -7,7 +7,7 @@
 #  Input files: Videos id list (from videos Delta-S3 Table)
 #  Output file: Games - Video list
 #  Notes:
-#  How to run: python <session> retrieve_vid_meta.py (ran using airflow's bash operator)
+#  How to run: python retrieve_vid_meta.py <session>  (ran using airflow's bash operator)
 #  session refers to certain EC2 instance
 ##################################################################################
 
